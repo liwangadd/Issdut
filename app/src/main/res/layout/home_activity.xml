@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_below="@id/status_view"
+        android:layout_width="fill_parent"
+        android:layout_height="100.0dip"
+        android:background="#4285F4"
+        android:gravity="center_vertical"
+        android:paddingLeft="15.0dip"
+        android:text="学生周知"
+        android:textColor="#ffffffff"
+        android:textSize="20.0sp"
+        android:textStyle="normal" />
+
+    <com.liwang.view.SwipeRefreshLoadLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/app_name">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/data_view"
+            android:layout_width="fill_parent"
+            android:background="#fff"
+            android:layout_height="fill_parent" />
+
+    </com.liwang.view.SwipeRefreshLoadLayout>
+
+    <com.liwang.view.LoadingView
+        android:id="@+id/loadView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:loadingText="加薪中..." />
+
+</RelativeLayout>

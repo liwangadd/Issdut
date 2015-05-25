@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liwang.view.RevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/reveal_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/status_view"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#3367D6" />
+
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="fill_parent"
+            android:layout_height="100dip"
+            android:layout_below="@id/status_view"
+            android:background="#4285F4"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dip"
+            android:textColor="#ffffffff"
+            android:textSize="20.0sp"
+            android:visibility="gone"
+            android:textStyle="normal" />
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/app_name"
+            android:layout_marginBottom="0.0dip"
+            android:background="#ffffffff"
+            android:scrollbars="none">
+
+            <TextView
+                android:id="@+id/newsarticle"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:autoLink="none"
+                android:lineSpacingExtra="10.0dip"
+                android:linksClickable="true"
+                android:paddingBottom="40.0dip"
+                android:paddingLeft="13.0dip"
+                android:paddingRight="13.0dip"
+                android:paddingTop="10.0dip"
+                android:selectAllOnFocus="true"
+                android:text=""
+                android:textColor="@android:color/background_dark"
+                android:textIsSelectable="true"
+                android:textSize="16.0sp"
+                android:textStyle="normal" />
+        </ScrollView>
+
+        <com.liwang.view.LoadingView
+            android:id="@+id/loadView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:loadingText="加薪中..." />
+
+        <FrameLayout
+            android:id="@+id/fab_container"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/media_controls_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="15dp">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleX="0"
+                    android:scaleY="0"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:id="@+id/download_one"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/fab_normal"
+                        android:gravity="center"
+                        android:text="一"
+                        android:textColor="#fff"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleX="0"
+                    android:scaleY="0"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/download_two"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/fab_normal"
+                        android:gravity="center"
+                        android:text="二"
+                        android:textColor="#fff"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleX="0"
+                    android:scaleY="0"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/download_three"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/fab_normal"
+                        android:gravity="center"
+                        android:text="三"
+                        android:textColor="#fff"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleX="0"
+                    android:scaleY="0"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/download_four"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/fab_normal"
+                        android:gravity="center"
+                        android:text="四"
+                        android:textColor="#fff"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleX="0"
+                    android:scaleY="0"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/download_five"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/fab_normal"
+                        android:gravity="center"
+                        android:text="五"
+                        android:textColor="#fff"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleX="0"
+                    android:scaleY="0"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/download_six"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/fab_normal"
+                        android:gravity="center"
+                        android:text="六"
+                        android:textColor="#fff"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/fab"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="top|right"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/ripple"
+                android:onClick="onFabPressed"
+                android:src="@drawable/download_text"
+                android:transitionName="button_fab" />
+        </FrameLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/top_status"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#3367D6" />
+
+        <TextView
+            android:id="@+id/top_name"
+            android:layout_width="fill_parent"
+            android:layout_height="60.0dip"
+            android:layout_below="@id/top_status"
+            android:background="#4285F4"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dip"
+            android:text="学生周知"
+            android:textColor="#ffffffff"
+            android:textSize="20.0sp"
+            android:textStyle="normal" />
+
+        <ImageView
+            android:id="@+id/prev_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/top_name" />
+    </RelativeLayout>
+
+</com.liwang.view.RevealLayout>

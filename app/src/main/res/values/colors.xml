@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="triangle">#72d572</color>
+    <color name="circle">#738ffe</color>
+    <color name="rect">#e84e40</color>
+    <color name="view_bg">#00000000</color>
+    <color name="shadow">#bdbdbd</color>
+    <color name="rippelColor">#FFFFFF</color>
+    <color name="brand_accent">#FE9700</color>
+    <color name="blue">#ff2195f2</color>
+    <color name="color_accent">#7c4dff</color>
+    <color name="color_success">#3CCD88</color>
+    <color name="color_error">#ff0000</color>
+</resources>
