@@ -141,7 +141,7 @@ public class HomeActivity extends Activity implements SwipeRefreshLoadLayout.OnR
         //dataView.setItemAnimator(new HomeItemAnimator());
         RelativeLayout.LayoutParams nameParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60f, getResources().getDisplayMetrics()));
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             nameParams.topMargin = ScreenUtils.getStatusHeight(this);
         }
         appNameView.setLayoutParams(nameParams);
