@@ -157,13 +157,13 @@ public class DetailActivity extends SwipeBackActivity implements View.OnClickLis
             topStatusView.setVisibility(View.GONE);
         }
 
-        //初始化下载进度vview
+        //初始化下载进度view
         loadToast = new LoadToast(this).setText("download...").setTranslationY(120);
         mDownloadFile = new DownloadFile();
         mDownloadFile.setOnDownLoadListener(this);
 
         //去掉注解的正则表达式
-        escapteNote = Pattern.compile("(<!--[\\s\\S]*)-->");
+        escapteNote = Pattern.compile("(<style>[\\s\\S]*</style>)");
         compileUrl = Pattern.compile("[(.*/)]+");
     }
 
