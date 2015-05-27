@@ -97,8 +97,8 @@ public class HtmlImageGetter implements Html.ImageGetter {
 
         @Override
         public void draw(Canvas canvas) {
+            this.setBounds(0,0,bitmap.getWidth(),bitmap.getHeight());
             if (bitmap != null) {
-                Log.e("canvas", "canvas");
                 canvas.drawBitmap(bitmap, 0, 0, null);
             }
         }

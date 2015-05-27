@@ -247,7 +247,7 @@ public class DetailActivity extends SwipeBackActivity implements View.OnClickLis
             getter.setListener(new HtmlImageGetter.onCompleteListener() {
                 @Override
                 public void complete() {
-                    messageView.setText(spanned);
+                    messageView.setText(messageView.getText());
                 }
             });
             spanned = Html.fromHtml(message, getter, null);
