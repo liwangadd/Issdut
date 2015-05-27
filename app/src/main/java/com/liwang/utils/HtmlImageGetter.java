@@ -59,9 +59,9 @@ public class HtmlImageGetter implements Html.ImageGetter {
             ImageRequest imgRequest = new ImageRequest(source, new Response.Listener<Bitmap>() {
                 @Override
                 public void onResponse(Bitmap response) {
-                    urlDrawable.bitmap = response;
+                    urlDrawable.setBitmap(response);
 //                    textView.requestLayout();
-                    if(listener!=null)
+                    if (listener != null)
                         listener.complete();
                 }
 
@@ -87,28 +87,37 @@ public class HtmlImageGetter implements Html.ImageGetter {
 
     public class URLDrawable extends BitmapDrawable {
 
-        protected Bitmap bitmap;
+        private Bitmap bitmap;
+        private int width, height;
 
         public URLDrawable(Context context) {
             this.setBounds(getDefaultImageBounds(context));
             bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo);
+            this.width=bitmap.getWidth();
+            this.height=bitmap.getHeight();
             textView.requestLayout();
         }
 
         @Override
         public void draw(Canvas canvas) {
-            this.setBounds(0,0,bitmap.getWidth(),bitmap.getHeight());
+            this.setBounds(0, 0, width, height);
             if (bitmap != null) {
                 canvas.drawBitmap(bitmap, 0, 0, null);
             }
         }
+
+        public void setBitmap(Bitmap bitmap) {
+            this.bitmap = bitmap;
+            this.height = bitmap.getHeight();
+            this.width = bitmap.getWidth();
+        }
     }
 
-    public interface onCompleteListener{
+    public interface onCompleteListener {
         void complete();
     }
 
-    public void setListener(onCompleteListener listener){
-        this.listener=listener;
+    public void setListener(onCompleteListener listener) {
+        this.listener = listener;
     }
 }

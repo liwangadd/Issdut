@@ -16,10 +16,9 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.liwang.activity.HomeActivity"
+            android:name="com.liwang.activity.WelcomeActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNotTranslucent">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +29,8 @@
             android:name="com.liwang.activity.DetailActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.liwang.activity.WelcomeActivity"
+        <activity android:name="com.liwang.activity.HomeActivity"
+            android:theme="@style/AppThemeNotTranslucent"
             android:screenOrientation="portrait">
         </activity>
         <meta-data android:value="a43dda8eb5445f8c5c92df733b8bc8e8" android:name="BUG_HD_SDK_GENERAL_KEY" />
