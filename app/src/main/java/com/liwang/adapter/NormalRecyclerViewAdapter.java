@@ -16,14 +16,15 @@ import com.liwang.bean.HomePage;
 import com.liwang.issdut.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<NormalRecyclerViewAdapter.NormalTextViewHolder> {
 
     private final LayoutInflater mLayoutInflater;
     private final Context mContext;
-    private ArrayList<HomePage> homePages;
+    private List<HomePage> homePages;
 
-    public NormalRecyclerViewAdapter(Context context, ArrayList<HomePage> homePages) {
+    public NormalRecyclerViewAdapter(Context context, List<HomePage> homePages) {
         this.homePages = homePages;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
@@ -37,6 +38,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<NormalRecycl
     @Override
     public void onBindViewHolder(NormalTextViewHolder holder, final int position) {
         holder.messageView.setText(homePages.get(position).getTitle());
+        holder.dateView.setText(homePages.get(position).getDate());
         holder.backView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -65,12 +67,14 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<NormalRecycl
         TextView messageView;
         ImageView arrowView;
         View backView;
+        TextView dateView;
 
         NormalTextViewHolder(View view) {
             super(view);
             backView = view;
             messageView = (TextView) view.findViewById(R.id.message);
             arrowView = (ImageView) view.findViewById(R.id.arrow);
+            dateView= (TextView) view.findViewById(R.id.date);
 //            rippleView= (RippleView) view.findViewById(R.id.ripple_view);
 //            rippleView.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
 //                @Override

@@ -8,11 +8,10 @@
     android:layout_marginTop="2dp"
     card_view:cardCornerRadius="4dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/item_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/arrow"
@@ -42,6 +41,16 @@
             android:text="大连理工大学软件学院"
             android:textColor="#ff696969"
             android:textSize="16.0sp" />
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="2015-.6-20"
+            android:layout_below="@id/message"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"/>
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>

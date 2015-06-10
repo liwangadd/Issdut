@@ -1,7 +1,6 @@
 package com.liwang.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,8 +8,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.style.UpdateAppearance;
-import android.text.style.UpdateLayout;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
@@ -38,6 +35,10 @@ import org.jsoup.select.Elements;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 public class HomeActivity extends Activity implements SwipeRefreshLoadLayout.OnRefreshListener,
@@ -47,7 +48,7 @@ public class HomeActivity extends Activity implements SwipeRefreshLoadLayout.OnR
     protected static RecyclerView dataView;
     private View appNameView;
     private boolean isFinish = false;
-    private ArrayList<HomePage> homePages = new ArrayList<HomePage>();
+    private List<HomePage> homePages = new ArrayList<>();
     private NormalRecyclerViewAdapter dataAdapter;
     private String nextPage;
     private String firstPageUrl, otherPrev;
@@ -96,14 +97,22 @@ public class HomeActivity extends Activity implements SwipeRefreshLoadLayout.OnR
                     response = new String(response.getBytes(serverEncode), androidEncode);
                     Document doc = Jsoup.parse(response);
                     Elements es = doc.getElementsByAttributeValue(homeAttr, homeVal);
-                    int start = homePages.size();
-                    for (Element e : es) {
+                    Elements dateEs = doc.getElementsByAttributeValue("class", "c56628_date fr");
+                    //int start = homePages.size();
+                    int esSize=es.size();
+                    for (int i=0;i<esSize;++i) {
+                        Element e = es.get(i);
                         homePage = new HomePage();
                         homePage.setTitle(e.text());
                         homePage.setUrl(e.attr("href"));
+                        homePage.setDate(dateEs.get(i).text());
                         homePages.add(homePage);
                     }
-                    dataAdapter.notifyItemRangeInserted(start, homePages.size() - start);
+                    Set<HomePage> sets=new HashSet<>(homePages);
+                    homePages.clear();
+                    homePages.addAll(sets);
+                    Collections.sort(homePages);
+                    dataAdapter.notifyDataSetChanged();
                     es = doc.getElementsByAttributeValue(nextAttr, nextVal);
                     nextPage = "";
                     if (es.size() > 1) {
