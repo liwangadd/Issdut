@@ -59,10 +59,9 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 public class DetailActivity extends SwipeBackActivity implements View.OnClickListener,
         DownloadFile.OnDownLoadListener {
 
-    private SwipeBackLayout mSwipeBackLayout;
     private TextView messageView;
     private String message;
-    private View statusView,topStatusView;
+    private View statusView, topStatusView;
     private View loadView;
     private ImageView prevView;
     private RevealLayout revealLayout;
@@ -102,9 +101,7 @@ public class DetailActivity extends SwipeBackActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_activity);
 
-        mSwipeBackLayout = new SwipeBackLayout(this);
-        mSwipeBackLayout.setEdgeSize(400);
-        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        getSwipeBackLayout().setEdgeSize(getResources().getDisplayMetrics().widthPixels / 2);
 
         initView();
 
@@ -122,7 +119,7 @@ public class DetailActivity extends SwipeBackActivity implements View.OnClickLis
         revealLayout = (RevealLayout) findViewById(R.id.reveal_layout);
         //覆盖状态栏的view
         statusView = findViewById(R.id.status_view);
-        topStatusView=findViewById(R.id.top_status);
+        topStatusView = findViewById(R.id.top_status);
         //展开下载栏的view
         mFab = (ImageView) findViewById(R.id.fab);
         //展示标题view
@@ -142,17 +139,17 @@ public class DetailActivity extends SwipeBackActivity implements View.OnClickLis
         //下载附件的按钮
         for (int i = 0; i < mControlsContainer.getChildCount(); ++i) {
             downViews[i] = mControlsContainer.getChildAt(i);
-            ((ViewGroup)downViews[i]).getChildAt(0).setOnClickListener(this);
+            ((ViewGroup) downViews[i]).getChildAt(0).setOnClickListener(this);
         }
 
 
         //初始化覆盖状态栏view的高度
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
                     ScreenUtils.getStatusHeight(this));
             statusView.setLayoutParams(params);
             topStatusView.setLayoutParams(params);
-        }else{
+        } else {
             statusView.setVisibility(View.GONE);
             topStatusView.setVisibility(View.GONE);
         }
@@ -169,7 +166,7 @@ public class DetailActivity extends SwipeBackActivity implements View.OnClickLis
 
     private void initData() {
         url = getIntent().getStringExtra("url");
-        title=getIntent().getStringExtra("title");
+        title = getIntent().getStringExtra("title");
         titleView.setText(title);
 
         detailPrev = ((DutApplication) getApplication()).getConfigProperties().getProperty("detailPrev");
