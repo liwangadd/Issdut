@@ -40,7 +40,8 @@ public class HtmlImageGetter implements Html.ImageGetter {
     @Override
     public Drawable getDrawable(String paramString) {
         URLDrawable urlDrawable = new URLDrawable(context);
-        paramString = paramString.replace("../..", "http://ssdut.dlut.edu.cn");
+//        paramString = paramString.replace("../..", "http://ssdut.dlut.edu.cn");
+        paramString = "http://ssdut.dlut.edu.cn" + paramString;
         ImageGetterAsyncTask getterTask = new ImageGetterAsyncTask(urlDrawable);
         getterTask.execute(paramString);
         return urlDrawable;
@@ -93,8 +94,8 @@ public class HtmlImageGetter implements Html.ImageGetter {
         public URLDrawable(Context context) {
             this.setBounds(getDefaultImageBounds(context));
             bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo);
-            this.width=bitmap.getWidth();
-            this.height=bitmap.getHeight();
+            this.width = bitmap.getWidth();
+            this.height = bitmap.getHeight();
             textView.requestLayout();
         }
 

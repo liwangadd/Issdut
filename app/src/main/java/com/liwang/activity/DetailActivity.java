@@ -12,12 +12,10 @@ import android.os.Message;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.AccelerateInterpolator;
-import android.widget.AutoCompleteTextView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -51,7 +49,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 /**
@@ -90,7 +87,7 @@ public class DetailActivity extends SwipeBackActivity implements View.OnClickLis
     private String[] downUrls = new String[6];
     private String detailPrev;
     private String attachAttr, attachVal;
-    private String contentAttr, contentVal;
+    private String contentAttr, contentAttr1, contentVal, contentVal1;
     private String serverEncode, androidEncode;
     //解析html之后的spanned
     private Spanned spanned;
@@ -173,6 +170,8 @@ public class DetailActivity extends SwipeBackActivity implements View.OnClickLis
         detailPrev = ((DutApplication) getApplication()).getConfigProperties().getProperty("detailPrev");
         contentAttr = ((DutApplication) getApplication()).getConfigProperties().getProperty("contentAttr");
         contentVal = ((DutApplication) getApplication()).getConfigProperties().getProperty("contentVal");
+        contentAttr1=((DutApplication) getApplication()).getConfigProperties().getProperty("contentAttr1");
+        contentVal1=((DutApplication) getApplication()).getConfigProperties().getProperty("contentVal1");
         attachAttr = ((DutApplication) getApplication()).getConfigProperties().getProperty("attachAttr");
         attachVal = ((DutApplication) getApplication()).getConfigProperties().getProperty("attachVal");
         serverEncode = ((DutApplication) getApplication()).getConfigProperties().getProperty("serverEncode");
@@ -180,7 +179,6 @@ public class DetailActivity extends SwipeBackActivity implements View.OnClickLis
 
         Matcher matcher = compileUrl.matcher(url);
         url = matcher.replaceFirst(detailPrev);
-        Log.e("url", url);
         ((DutApplication) getApplication()).getQueue().add(buildRequest(url));
     }
 
@@ -191,6 +189,7 @@ public class DetailActivity extends SwipeBackActivity implements View.OnClickLis
                     public void onResponse(String response) {
                         try {
                             response = new String(response.getBytes(serverEncode), androidEncode);
+                            System.out.println(response);
                             Document doc = Jsoup.parse(response);
                             Elements es = doc.getElementsByAttributeValue(attachAttr, attachVal);
 
@@ -216,8 +215,16 @@ public class DetailActivity extends SwipeBackActivity implements View.OnClickLis
                                 message = matcher.replaceFirst("");
                                 handler.sendEmptyMessage(0x123);
                             } else {
-                                ((DutApplication) getApplication()).getQueue().getCache().remove(url);
-                                Toast.makeText(DetailActivity.this, "信息获取失败", Toast.LENGTH_SHORT).show();
+                                es = doc.getElementsByAttributeValue(contentAttr, contentVal1);
+                                if (es.size() > 0) {
+                                    message = es.get(0).html();
+                                    Matcher matcher = escapteNote.matcher(message);
+                                    message = matcher.replaceFirst("");
+                                    handler.sendEmptyMessage(0x123);
+                                } else {
+                                    ((DutApplication) getApplication()).getQueue().getCache().remove(url);
+                                    Toast.makeText(DetailActivity.this, "信息获取失败", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         } catch (UnsupportedEncodingException e) {
                             Toast.makeText(DetailActivity.this, "信息获取失败", Toast.LENGTH_SHORT).show();

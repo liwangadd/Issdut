@@ -55,6 +55,7 @@ public class HomeActivity extends Activity implements SwipeRefreshLoadLayout.OnR
     private String serverEncode, androidEncode;
     private String homeAttr, homeVal;
     private String nextAttr, nextVal;
+    private String dateAttr, dateVal;
     private LoadingView loadView;
 
     @Override
@@ -76,6 +77,8 @@ public class HomeActivity extends Activity implements SwipeRefreshLoadLayout.OnR
         homeVal = ((DutApplication) getApplication()).getConfigProperties().getProperty("homeVal");
         nextAttr = ((DutApplication) getApplication()).getConfigProperties().getProperty("nextAttr");
         nextVal = ((DutApplication) getApplication()).getConfigProperties().getProperty("nextVal");
+        dateAttr=((DutApplication) getApplication()).getConfigProperties().getProperty("dateAttr");
+        dateVal=((DutApplication) getApplication()).getConfigProperties().getProperty("dateVal");
 
         StringRequest stringRequest = buildRequest(firstPageUrl);
         ((DutApplication) getApplication()).getQueue().add(stringRequest);
@@ -97,7 +100,7 @@ public class HomeActivity extends Activity implements SwipeRefreshLoadLayout.OnR
                     response = new String(response.getBytes(serverEncode), androidEncode);
                     Document doc = Jsoup.parse(response);
                     Elements es = doc.getElementsByAttributeValue(homeAttr, homeVal);
-                    Elements dateEs = doc.getElementsByAttributeValue("class", "c56628_date fr");
+                    Elements dateEs = doc.getElementsByAttributeValue(dateAttr, dateVal);
                     //int start = homePages.size();
                     int esSize=es.size();
                     for (int i=0;i<esSize;++i) {
@@ -108,10 +111,10 @@ public class HomeActivity extends Activity implements SwipeRefreshLoadLayout.OnR
                         homePage.setDate(dateEs.get(i).text());
                         homePages.add(homePage);
                     }
-                    Set<HomePage> sets=new HashSet<>(homePages);
-                    homePages.clear();
-                    homePages.addAll(sets);
-                    Collections.sort(homePages);
+                    //Set<HomePage> sets=new HashSet<>(homePages);
+//                    homePages.clear();
+//                    homePages.addAll(sets);
+//                    Collections.sort(homePages);
                     dataAdapter.notifyDataSetChanged();
                     es = doc.getElementsByAttributeValue(nextAttr, nextVal);
                     nextPage = "";

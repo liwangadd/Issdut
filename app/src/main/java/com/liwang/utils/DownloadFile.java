@@ -107,10 +107,11 @@ public class DownloadFile {
                 break;
             if ("content-disposition".equals(conn.getHeaderFieldKey(i)
                     .toLowerCase())) {
-                Matcher m = Pattern.compile(".*filename=(.*)").matcher(
+                Matcher m = Pattern.compile(".*filename\\*=(.*);").matcher(
                         mine.toLowerCase());
                 if (m.find()) {
                     filename = m.group(1);
+                    Log.e("filename", filename);
                     return URLDecoder.decode(filename, "UTF-8");
                 }
             }
